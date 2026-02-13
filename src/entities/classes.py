@@ -46,7 +46,7 @@ class d01:
             'Boots': None,
         }
         self.basic_skills  = [None, None, None, None]
-        self.attack        = SkillEngine(self.ba_mech, self.ba_set)
+        self.attack        = SkillEngine("Ataque Básico", self.ba_mech, self.ba_set)
         self.passive       = PassiveEngine('Angarde', self.psv)
 
     def ba_mech(self, user, target):
@@ -119,7 +119,7 @@ class w01:
         }
         self.basic_skills  = [None, None, None, None]
         
-        self.attack  = SkillEngine(self.mech, self.set)
+        self.attack  = SkillEngine("Ataque Básico", self.mech, self.set)
         self.passive = PassiveEngine('For the Twice', self.psv)
 
     def mech(self, user, target):
@@ -172,7 +172,7 @@ class m01:
             'Boots': None,
         }
         self.basic_skills  = [None, None, None, None]
-        self.attack        = SkillEngine(self.mech, self.set)
+        self.attack        = SkillEngine("Ataque Básico", self.mech, self.set)
         self.passive       = PassiveEngine('Contracts', self.psv)
 
     def mech(self, user, target):
@@ -181,7 +181,7 @@ class m01:
             target.COMBAT_PROFILE.CURRENT_HP += damage
             print(f'{user.codename} [{user.index}] curou {target.codename} [{target.index}]')
             for allies in user.CONTEXT.ALLIES:
-                user.COMBAT_PROFILE.LISTOF_TARGETS.remove(allies)
+                user.COMBAT_ACTIONS.LISTOF_TARGETS.remove(allies)
         else:
             target.COMBAT_PROFILE.CURRENT_HP -= damage
         
@@ -192,12 +192,40 @@ class m01:
     def set(self, user):
         for allies in user.CONTEXT.ALLIES:
             if allies not in user.COMBAT_ACTIONS.LISTOF_TARGETS:
-                user.COMBAT_ACTIONS.LISTOF_TARGETS.insert(-1, allies)
+                user.COMBAT_ACTIONS.LISTOF_TARGETS.append(allies)
 
     def psv(self, user):
         #TODO uma passiva pra armazenar aliados na lista de alvos de actions
         #TODO e curar eles com o ataque, caso eles sejam atacados
         pass
+
+
+class m02:
+    def __init__(self):
+        self.mc = 'MAGE'
+        self.codename = 'The Artist'
+
+        self.size = SPRITE_S_N
+        #! 
+
+        self.basic_stats   = {
+            'hp': 70,
+            'str': 10, 
+            'dex': 40,
+            'knw': 40,
+            'lky': 5,
+            'res': 5,
+        }
+        self.basic_items   = {
+            'armor': None,
+            'weapon': None,
+            'Trinket': None,
+            'Boots': None,
+        }
+        self.basic_skills  = [None, None, None, None]
+        self.attack        = SkillEngine("Ataque Básico", self.mech, self.set)
+        self.passive       = PassiveEngine('Contracts', self.psv)
+
 
 LIST = {
     0: d01,

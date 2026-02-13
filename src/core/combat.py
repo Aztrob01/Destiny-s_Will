@@ -34,11 +34,11 @@ class Combat:
         for nums, members in enumerate(self.PLAYER_TEAM):
                 members.update()
 
-                # run over the PT lenght, if the player X isnt in the member allies list AND the player X isnt the member
+                # run over the PT lenght, if the player X isnt in the member ALLIES list AND the player X isnt the member
                 # adds ally to the member list
                 for x in range(0, len(self.PLAYER_TEAM)):
-                    if self.PLAYER_TEAM[x] not in members.CONTEXT.allies and self.PLAYER_TEAM[x] != members:
-                        members.CONTEXT.allies.insert(-1, self.PLAYER_TEAM[x])        
+                    if self.PLAYER_TEAM[x] not in members.CONTEXT.ALLIES and self.PLAYER_TEAM[x] != members:
+                        members.CONTEXT.ALLIES.insert(-1, self.PLAYER_TEAM[x])        
 
                 for enemies in self.ENEMY_TEAM:
                      if enemies not in members.COMBAT_ACTIONS.LISTOF_TARGETS:
@@ -48,8 +48,8 @@ class Combat:
                 entities.update()
 
                 for x in range(0, len(self.ENEMY_TEAM)):
-                    if self.ENEMY_TEAM[x] not in entities.CONTEXT.allies and self.ENEMY_TEAM[x] != entities:
-                        entities.CONTEXT.allies.insert(-1, self.ENEMY_TEAM[x])
+                    if self.ENEMY_TEAM[x] not in entities.CONTEXT.ALLIES and self.ENEMY_TEAM[x] != entities:
+                        entities.CONTEXT.ALLIES.insert(-1, self.ENEMY_TEAM[x])
 
                 for members in self.PLAYER_TEAM:
                      if members not in entities.COMBAT_ACTIONS.LISTOF_TARGETS:
@@ -59,17 +59,17 @@ class Combat:
         self.display.blit(self.background, (0, 0))
         self._update()
 
-        def draw_player_team_area(target):
+        def draw_ellipse(target):
             area_dimension = target.size[1] / 3
             
-            area = pygame.draw.ellipse(self.display, (self.MEMBER_COLOR_IDLE if self.MEMBER_TURN != target.index else self.MEMBER_COLOR_TURN), (target.rect[0], target.rect[1] + (target.size[1] - area_dimension / 2), target.size[0], area_dimension))
+            area = pygame.draw.ellipse(self.display, (self.MEMBER_COLOR_IDLE if self.MEMBER_TURN != target.index else (200, 0, 0) if target in self.ENEMY_TEAM else self.MEMBER_COLOR_TURN), (target.rect[0], target.rect[1] + (target.size[1] - area_dimension / 2), target.size[0], area_dimension))
             area.center = (target.rect[0], target.rect[1])
 
 
         def draw_player_team():
             for nums, members in enumerate(self.PLAYER_TEAM):
                 members.rect.midbottom = ((WIDTH * self.RIGHTSIDE_POSITION[nums][0]), (HEIGHT * self.RIGHTSIDE_POSITION[nums][1]))
-                draw_player_team_area(members)
+                draw_ellipse(members)
                 self.display.blit(members.sprite, (members.rect[0], members.rect[1]))
         def draw_enemy_team():
             for nums, entities in enumerate(self.ENEMY_TEAM):
@@ -83,14 +83,14 @@ class Combat:
     def fight(self):
 
         if not self.PLAYER_TURN:
-            if self.ENEMY_TURN > len(self.ENTITY_TURN):
+            if self.ENTITY_TURN > len(self.ENEMY_TEAM) - 1:
                 self.ENTITY_TURN = 0
                 self.PLAYER_TURN = True 
             if self.ENEMY_TEAM[self.ENTITY_TURN].COMBAT_ACTIONS.play():
                 self.ENTITY_TURN += 1
                 self.TOTAL_TURNS += 1
         if self.PLAYER_TURN:
-            if self.MEMBER_TURN > len(self.PLAYER_TEAM):
+            if self.MEMBER_TURN > len(self.PLAYER_TEAM) -1:
                 self.MEMBER_TURN = 0
                 self.PLAYER_TURN = False
             if self.PLAYER_TEAM[self.MEMBER_TURN].COMBAT_ACTIONS.play():

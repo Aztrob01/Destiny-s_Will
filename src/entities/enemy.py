@@ -36,7 +36,7 @@ class Goblin:
         }
         self.randomizable = [['str', (20, 40)], ['knw', (10, 20)]]
         self.basic_skills  = [None, None, None, None]
-        self.attack       = SkillEngine(self.mech, self.set)
+        self.attack       = SkillEngine("Ataque Básico", self.mech, self.set)
         self.passive      = PassiveEngine('Minor Attack', self.psv)
 
     def set(self, user):

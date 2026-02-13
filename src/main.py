@@ -9,7 +9,7 @@ class Game:
     def __init__(self):
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.m_name = pygame.display.set_caption('Dragon Rose')
-        self.clock  = pygame.time.Clock()
+        self.clock  = pygame.time.Clock()  
         self.level  = LevelCreator()
 
     def run(self):
