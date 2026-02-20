@@ -1,7 +1,9 @@
 import pygame
 import random
-from entities.passives import *
-from combat.profile import *
+from core.passive_list import passive_list
+from core.skill_engines import SkillEngine
+from core.skill_list import skill_list
+from root.utilities import image_load
 from root.settings import *
 
 # Creates start and playable Classes/jobs, determining their basic stats
@@ -14,21 +16,15 @@ class d01:
         self.name     = 'Claire Lemoine'
 
         self.size = SPRITE_S_N
-        self.inner_image_explore  = pygame.image.load('./assets/image/classes/cavaliere/idle.png')
-        self.inner_image_idle     = pygame.image.load('./assets/image/classes/cavaliere/idle.png')
-        self.inner_image_hitted   = pygame.image.load('./assets/image/classes/cavaliere/idle.png')
-        self.inner_image_selected = pygame.image.load('./assets/image/classes/cavaliere/idle.png')
-        self.inner_image_acting   = pygame.image.load('./assets/image/classes/cavaliere/idle.png')
-        self.inner_image_defeated = pygame.image.load('./assets/image/classes/cavaliere/idle.png')
         self.inner_galery         = {
-            'exploring':  self.inner_image_explore,
+            'exploring':  image_load('./assets/image/classes/cavaliere/idle.png'),
             'fighting': {
-                'idle': self.inner_image_idle,
-                'hitted':  self.inner_image_hitted,
-                'selected': self.inner_image_selected,
-                'acting':   self.inner_image_acting,
+                'idle': image_load('./assets/image/classes/cavaliere/idle.png'),
+                'hitted':  image_load('./assets/image/classes/cavaliere/idle.png'),
+                'selected': image_load('./assets/image/classes/cavaliere/idle.png'),
+                'acting':   image_load('./assets/image/classes/cavaliere/idle.png'),
             },
-            'defeated':  self.inner_image_defeated,
+            'defeated':  image_load('./assets/image/classes/cavaliere/idle.png'),
         }
 
         self.basic_stats   = {
@@ -45,9 +41,9 @@ class d01:
             'Trinket': None,
             'Boots': None,
         }
-        self.basic_skills  = [None, None, None, None]
+        self.basic_skills  = [skill_list['Pierce'], None, None, None]
         self.attack        = SkillEngine("Ataque Básico", self.ba_mech, self.ba_set)
-        self.passive       = PassiveEngine('Angarde', self.psv)
+        self.passive       = passive_list['d01']
 
     def ba_mech(self, user, target):
         # ataque basico que se beneficia de Destreza para causar dano
@@ -75,8 +71,6 @@ class d01:
     def ba_set(self, user):
         pass
 
-    def psv(self, user):
-        pass
             
         
 class w01:
@@ -86,23 +80,16 @@ class w01:
         self.name     = 'Zander Khrustt'
 
         self.size = SPRITE_S_N
-        self.inner_image_explore  = pygame.image.load('./assets/image/classes/dwarf/idle.png')
-        self.inner_image_idle     = pygame.image.load('./assets/image/classes/dwarf/idle.png')
-        self.inner_image_hitted   = pygame.image.load('./assets/image/classes/dwarf/idle.png')
-        self.inner_image_selected = pygame.image.load('./assets/image/classes/dwarf/idle.png')
-        self.inner_image_acting   = pygame.image.load('./assets/image/classes/dwarf/idle.png')
-        self.inner_image_defeated = pygame.image.load('./assets/image/classes/dwarf/idle.png')
         self.inner_galery         = {
-            'exploring':  self.inner_image_explore,
+            'exploring':  image_load('./assets/image/classes/dwarf/idle.png'),
             'fighting': {
-                'idle': self.inner_image_idle,
-                'hitted':  self.inner_image_hitted,
-                'selected': self.inner_image_selected,
-                'acting':   self.inner_image_acting,
+                'idle': image_load('./assets/image/classes/dwarf/idle.png'),
+                'hitted':  image_load('./assets/image/classes/dwarf/idle.png'),
+                'selected': image_load('./assets/image/classes/dwarf/idle.png'),
+                'acting':   image_load('./assets/image/classes/dwarf/idle.png'),
             },
-            'defeated':  self.inner_image_defeated,
+            'defeated':  image_load('./assets/image/classes/dwarf/idle.png'),
         }
-
         self.basic_stats  = {
             'hp': 125,
             'str': 40, 
@@ -117,10 +104,10 @@ class w01:
             'Trinket': None,
             'Boots': None,
         }
-        self.basic_skills  = [None, None, None, None]
+        self.basic_skills  = [skill_list['Encourage'], None, None, None]
         
         self.attack  = SkillEngine("Ataque Básico", self.mech, self.set)
-        self.passive = PassiveEngine('For the Twice', self.psv)
+        self.passive = passive_list['w01']
 
     def mech(self, user, target):
         DAMAGE = (user.COMBAT_PROFILE.STRENGHT * user.COMBAT_PROFILE.INPUT_DAMAGE_MULTIPLIER) - target.COMBAT_PROFILE.RESISTANCE
@@ -140,21 +127,15 @@ class m01:
         self.codename = 'Wizard'
 
         self.size = SPRITE_S_N
-        self.inner_image_explore  = pygame.image.load('./assets/image/classes/wizard/idle.png')
-        self.inner_image_idle     = pygame.image.load('./assets/image/classes/wizard/idle.png')
-        self.inner_image_hitted   = pygame.image.load('./assets/image/classes/wizard/idle.png')
-        self.inner_image_selected = pygame.image.load('./assets/image/classes/wizard/idle.png')
-        self.inner_image_acting   = pygame.image.load('./assets/image/classes/wizard/idle.png')
-        self.inner_image_defeated = pygame.image.load('./assets/image/classes/wizard/idle.png')
         self.inner_galery         = {
-            'exploring':  self.inner_image_explore,
+            'exploring':  image_load('./assets/image/classes/wizard/idle.png'),
             'fighting': {
-                'idle': self.inner_image_idle,
-                'hitted':  self.inner_image_hitted,
-                'selected': self.inner_image_selected,
-                'acting':   self.inner_image_acting,
+                'idle': image_load('./assets/image/classes/wizard/idle.png'),
+                'hitted':  image_load('./assets/image/classes/wizard/idle.png'),
+                'selected': image_load('./assets/image/classes/wizard/idle.png'),
+                'acting':  image_load('./assets/image/classes/wizard/idle.png'),
             },
-            'defeated':  self.inner_image_defeated,
+            'defeated':  image_load('./assets/image/classes/wizard/idle.png'),
         }
 
         self.basic_stats   = {
@@ -171,9 +152,9 @@ class m01:
             'Trinket': None,
             'Boots': None,
         }
-        self.basic_skills  = [None, None, None, None]
+        self.basic_skills  = [skill_list['Encourage'], None, None, None]
         self.attack        = SkillEngine("Ataque Básico", self.mech, self.set)
-        self.passive       = PassiveEngine('Contracts', self.psv)
+        self.passive       = passive_list['m01']
 
     def mech(self, user, target):
         damage = (user.COMBAT_PROFILE.STRENGHT * user.COMBAT_PROFILE.OUTPUT_DAMAGE_MULTIPLIER) - target.COMBAT_PROFILE.RESISTANCE
@@ -186,45 +167,11 @@ class m01:
             target.COMBAT_PROFILE.CURRENT_HP -= damage
         
         return True
-
         
-
     def set(self, user):
         for allies in user.CONTEXT.ALLIES:
             if allies not in user.COMBAT_ACTIONS.LISTOF_TARGETS:
                 user.COMBAT_ACTIONS.LISTOF_TARGETS.append(allies)
-
-    def psv(self, user):
-        #TODO uma passiva pra armazenar aliados na lista de alvos de actions
-        #TODO e curar eles com o ataque, caso eles sejam atacados
-        pass
-
-
-class m02:
-    def __init__(self):
-        self.mc = 'MAGE'
-        self.codename = 'The Artist'
-
-        self.size = SPRITE_S_N
-        #! 
-
-        self.basic_stats   = {
-            'hp': 70,
-            'str': 10, 
-            'dex': 40,
-            'knw': 40,
-            'lky': 5,
-            'res': 5,
-        }
-        self.basic_items   = {
-            'armor': None,
-            'weapon': None,
-            'Trinket': None,
-            'Boots': None,
-        }
-        self.basic_skills  = [None, None, None, None]
-        self.attack        = SkillEngine("Ataque Básico", self.mech, self.set)
-        self.passive       = PassiveEngine('Contracts', self.psv)
 
 
 LIST = {

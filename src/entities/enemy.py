@@ -1,5 +1,7 @@
 import random, pygame
-from entities.passives import PassiveEngine, SkillEngine
+from core.passive_list import passive_list
+from core.skill_engines import SkillEngine
+from core.skill_list import skill_list
 from root.settings import *
 from root.utilities import image_load
 
@@ -35,16 +37,11 @@ class Goblin:
             'res': 0,
         }
         
-        # skills as Pierce, Encourage (Team Buff, Solo Buff)
-        self.basic_skills = [None, None, None, None]
-        self.passive      = PassiveEngine('Counter Attack!', self.psv)
+        self.basic_skills = [skill_list['Pierce'], skill_list['Encourage']]
+        self.passive      = passive_list['Goblin']
         self.attack       = SkillEngine('Basic Attack', self.atk, self.mch)
 
-    def psv(self, user):
-        if user.context.get_hitted:
-            if user.context.aggressor not in user.context.allies:
-                user.context.aggressor.CURRENT_HP -= int(user.COMBAT_PROFILE.STRENGHT * 0.2)
-                user.context.passive_times_used += 1
+    
     
     def mch(self, user):
         pass
