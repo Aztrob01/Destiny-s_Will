@@ -24,3 +24,7 @@ class Timer:
             return True
         return False
         
+def image_load(origin):
+    image = pygame.image.load(origin)
+    
+    return image
