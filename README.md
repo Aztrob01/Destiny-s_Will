@@ -1,3 +1,3 @@
 # Destiny's Will
-## A RPG based game using Pygame.
+##### A RPG based game using Pygame.
 
