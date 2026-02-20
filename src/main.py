@@ -1,7 +1,7 @@
 import pygame
 
 from root.settings import *
-from core.level    import LevelCreator
+from core.level_engine    import LevelCreator
 
 # * Main Game Loop
 
