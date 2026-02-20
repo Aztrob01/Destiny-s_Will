@@ -1,12 +1,11 @@
 import pygame, random
 
-
 from root.settings       import *
 from entities.classes    import * #! removable
 from entities.enemy      import * #! removable
 from entities.characters import Characters
 from entities.entities   import Entities
-from core.combat         import Combat
+from core.combat_engine  import CombatSys
 
 # Control any combat screen
 
@@ -21,7 +20,7 @@ class LevelCreator:
         self.display = pygame.display.get_surface()
         
         self.WORLD   = World()
-        self.COMBAT  = Combat('./assets/image/battlegrounds/sideviewerII.png')
+        self.COMBAT  = CombatSys('./assets/image/battlegrounds/sideviewerII.png')
         
         self.WORLD_STAGE = None
 
