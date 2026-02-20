@@ -13,7 +13,7 @@ class Characters:
         self.origin    = member
         self.codename  = member.codename
         self.on_screen = member.size 
-        self.index     = 0
+        self.chid      = 0
         
         self.main_state     = 'fighting'
         self.fighting_state = 'idle'
