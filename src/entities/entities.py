@@ -1,7 +1,7 @@
 import pygame, random
 
 from combat.combat_buffer import CombatBuffer
-from root.utilities import update_sprt
+from src.root.utils import update_sprt
 
 class Entities:
     def __init__(self, entity):

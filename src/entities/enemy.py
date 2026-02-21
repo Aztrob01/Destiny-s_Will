@@ -3,7 +3,7 @@ from core.passive_list import passive_list
 from core.skill_engines import SkillEngine
 from core.skill_list import skill_list
 from root.settings import *
-from root.utilities import image_load
+from src.root.utils import image_load
 
 
 
