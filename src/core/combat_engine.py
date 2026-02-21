@@ -1,11 +1,11 @@
 import pygame
 from root.settings import *
-from cene.backgrounds import Background
+from root.utils import BackgroundManager
 
 class CombatSys:
     def __init__(self, background):
         self.display    = pygame.display.get_surface()
-        self.background = Background(background)
+        self.background = BackgroundManager(background)
         self.background = self.background.image
 
         self.PLAYER_TEAM  = []
