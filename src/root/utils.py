@@ -1,6 +1,18 @@
 from root.settings import *
 import pygame
 
+
+# ------------------------------------------------------------
+# Background Manager to load and scale Combat Background Image
+
+class BackgroundManager:
+    def __init__(self, image):
+        self.image = pygame.image.load(image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (WIDTH, HEIGHT))
+
+# ------------------------------------------------------------
+# Sprite Updater, to load and scale Entity Sprites based on their state and size
+
 def update_sprt(target):
     for states in target.origin.inner_galery:
         if target.main_state != 'fighting':
@@ -11,6 +23,10 @@ def update_sprt(target):
     target.sprite = pygame.transform.scale(target.sprite, (target.on_screen))
     target.rect = target.sprite.get_rect()
     target.size = target.sprite.get_size()
+
+# ------------------------------------------------------------
+# Timer class to create cooldowns and delays in the combat system
+# using pygame's time module
 
 class Timer:
     def __init__(self, delay):
@@ -28,3 +44,5 @@ def image_load(origin):
     image = pygame.image.load(origin)
     
     return image
+
+# ------------------------------------------------------------
