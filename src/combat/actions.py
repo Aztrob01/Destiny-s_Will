@@ -1,5 +1,5 @@
 import pygame, random
-from root.utilities import Timer
+from src.root.utils import Timer
             
 class ActionSystem:
     def __init__(self, user):
