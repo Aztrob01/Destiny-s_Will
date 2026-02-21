@@ -1,8 +1,6 @@
 import pygame
 
 from src.root.utils import update_sprt
-
-from combat.actions import ActionSystem
 from combat.profile import CombatProfile
 from combat.combat_history import CombatHistory
 

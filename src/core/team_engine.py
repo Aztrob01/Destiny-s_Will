@@ -14,21 +14,22 @@ class TeamEngine:
                 self.active_unities_index = len(self.active_unities) - 1
             else:
                 self.active_unities_index -= 1
-            self.active_unities_index += jump
+            self.active_unities_index -= jump
             self.active_unity = self.active_unities[self.active_unities_index]
         
         def define(self):
             self.disponible_unities = self.team.unities
             if self.active_unities == []:
-                self.active_unities = self.disponible_unities[:3]
+                self.active_unities = self.disponible_unities[:3] #! change this later
             for unities in self.disponible_unities:
                 if unities not in self.active_unities:
                     if unities not in self.offline_unities:
                         self.offline_unities.append(unities) 
 
-        def next(self):
+        def next(self, jump=0):
             if self.active_unities_index >= len(self.active_unities) - 1:
                 self.active_unities_index = 0
             else:
                 self.active_unities_index += 1
+            self.active_unities_index += jump
             self.active_unity = self.active_unities[self.active_unities_index]
