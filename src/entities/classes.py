@@ -15,7 +15,7 @@ class cvl:
         self.codename = 'Cavaliere'
         self.name     = 'Claire Lemoine'
 
-        self.size = None # ! Correction is needed
+        self.size = SPRITE_S_N # ! Correction is needed
         self.inner_galery         = {
             'exploring':  image_load('./assets/image/classes/cvl/idle.png'),
             'fighting': {
@@ -47,22 +47,22 @@ class cvl:
 
 # -------------------------------------------
 # D
-class dwr:
+class dwf:
     def __init__(self):
         self.mc = 'WARRIOR'
         self.codename = 'Dwarf'
         self.name     = 'Kylian Johansson'
 
-        self.size = (1, 1, 0.6) # square, low scale
+        self.size = SPRITE_S_N # square, low scale
         self.inner_galery         = {
-            'exploring':  image_load('./assets/image/classes/dwr/idle.png'),
+            'exploring':  image_load('./assets/image/classes/dwf/idle.png'),
             'fighting': {
-                'idle': image_load('./assets/image/classes/dwr/idle.png'),
-                'hitted':  image_load('./assets/image/classes/dwr/idle.png'),
-                'selected': image_load('./assets/image/classes/dwr/idle.png'),
-                'acting':   image_load('./assets/image/classes/dwr/idle.png'),
+                'idle': image_load('./assets/image/classes/dwf/idle.png'),
+                'hitted':  image_load('./assets/image/classes/dwf/idle.png'),
+                'selected': image_load('./assets/image/classes/dwf/idle.png'),
+                'acting':   image_load('./assets/image/classes/dwf/idle.png'),
             },
-            'defeated':  image_load('./assets/image/classes/dwr/idle.png'),
+            'defeated':  image_load('./assets/image/classes/dwf/idle.png'),
         }
         self.basic_stats  = {
             'hp': 125,
@@ -91,7 +91,7 @@ class wzr:
         self.mc = 'MAGE'
         self.codename = 'Wizard'
 
-        self.size = None # ! Correction is needed
+        self.size = SPRITE_S_N # ! Correction is needed
         self.inner_galery         = {
             'exploring':  image_load('./assets/image/classes/wzr/idle.png'),
             'fighting': {

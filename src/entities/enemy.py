@@ -13,7 +13,7 @@ class dmy:
         self.main_class = 'Dummy'
         self.codename   = 'Dummy'
 
-        self.size = SPRITE_S_S
+        self.size = SPRITE_S_N
         self.inner_galery = {
             'exploring': image_load('./assets/image/entities/dmy/idle.png'),
             'fighting': {
@@ -52,14 +52,14 @@ class gob:
 
         self.size = SPRITE_S_S
         self.inner_galery = {
-            'exploring': image_load('./assets/image/entities/goblins/idle.png'),
+            'exploring': image_load('./assets/image/entities/gob/idle.png'),
             'fighting': {
-                'idle': image_load('./assets/image/entities/goblins/idle.png'),
-                'hitted': image_load('./assets/image/entities/goblins/idle.png'),
-                'selected': image_load('./assets/image/entities/goblins/idle.png'),
-                'acting': image_load('./assets/image/entities/goblins/idle.png'),
+                'idle': image_load('./assets/image/entities/gob/idle.png'),
+                'hitted': image_load('./assets/image/entities/gob/idle.png'),
+                'selected': image_load('./assets/image/entities/gob/idle.png'),
+                'acting': image_load('./assets/image/entities/gob/idle.png'),
             },
-            'defeated': image_load('./assets/image/entities/goblins/idle.png')
+            'defeated': image_load('./assets/image/entities/gob/idle.png')
         }
         self.brain = {
             'agr': 5, # aggressivenes
@@ -76,5 +76,5 @@ class gob:
         }
         
         self.basic_skills = [skill_list['Pierce'], skill_list['Encourage']]
-        self.passive      = passive_list['gob']
+        self.passive      = None 
         self.attack       = None #! skill engine do ataque basico do goblin

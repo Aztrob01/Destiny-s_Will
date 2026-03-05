@@ -16,6 +16,8 @@ class Characters:
         
         self.main_state     = 'fighting'
         self.fighting_state = 'idle'
+        self.image = member.inner_galery['fighting']['idle']
+        self.rect  = self.image.get_rect()
         
         self.items   = member.basic_items
         self.skills  = member.basic_skills
