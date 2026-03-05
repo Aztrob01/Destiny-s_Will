@@ -1,6 +1,6 @@
 class CombatBuffer:
-    def __init__(self):
-        
+    def __init__(self, user):
+        self.user = user
         self.info_round   = { 'actual_round': 0, 'rounds_played': 0}
         self.info_hitted  = { 'get_hitted': 0, 'total_damage_mitigated': 0, 'min_received': 0, 'max_received': 0, 'actual_source': None, 'last_source': None }
         self.info_allies  = { 'allies': [] }
