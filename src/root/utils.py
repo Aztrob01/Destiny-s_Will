@@ -12,7 +12,7 @@ class BackgroundManager:
 # ------------------------------------------------------------
 # Sprite Updater, to load and scale Entity Sprites based on their state and size
 
-def update_sprt(target):
+def update_sprt(target): #! will break with the changes on image_load() / 15:37
     for states in target.origin.inner_galery:
         if target.main_state != 'fighting':
             target.sprite = target.origin.inner_galery[target.main_state]
@@ -26,8 +26,9 @@ def update_sprt(target):
 # ------------------------------------------------------------
 # Image Loader, to load and scale images based on the given path
 
-def image_load(origin):
+def image_load(origin, size):
     image = pygame.image.load(origin)
+    image = pygame.transform.scale(image, size)
     
     return image
 
