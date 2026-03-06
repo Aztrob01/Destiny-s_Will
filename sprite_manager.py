@@ -38,6 +38,7 @@ class SpriteManager:
                 for num, key in enumerate(self.static[nums]):
                     if key_state[1] == self.static[nums][num]:
                         self.image_updade(self.static[nums][num])
-                        break #! to help cpu dont go mad if work. Else... Just delete that
-                    
+                        break
+                break
+
 
