@@ -1,0 +1,18 @@
+{
+    "game": {
+        "version": ["Apollo", 0.01],
+        "clock": 30,
+        "debug_name": "Paracelso",
+        "debug_mode": false
+    },
+    "settings": {
+        "video": {
+            "resolutions": {
+            "16:9": [[640, 360], [768, 432], [1024, 576], [1280, 720], [1664, 936], [1920, 1080]],
+            "4:3": null,
+            "21:9": null },
+            "sprite_sizes": { "mini": 0.1, "normal": 0.2, "giant": 0.3 },
+            "actual_res": [768, 432]
+        }
+    }
+}

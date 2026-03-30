@@ -1,0 +1,1 @@
+game is where the game data, like saves, are in.
