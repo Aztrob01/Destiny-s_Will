@@ -20,7 +20,7 @@ class GameLoop:
             for event in events:
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    exit(0)    
+                    exit(0)
 
 
             self.level.events = events
