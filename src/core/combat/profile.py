@@ -12,18 +12,18 @@ class ProfileData:
         self.stats = {
             'hp': { 'original': self.attr.main['hp'], 'maximum': self.attr.main['hp'], 'current': self.attr.main['hp'] },
             'damage': {
-                'crit_chance': ((5 + (self.attr.main['lky'] / 10)) / 100), 
-                'phy_damage_multiplier': 1,
-                'mag_damage_multiplier': 1,
-                'gen_damage_multiplier': 1,
-                'crit_damage': ((150 + (self.attr.main['dex'] / 10)) / 100),
+                'cr_damage_chance': ((5 + (self.attr.main['lky'] / 10)) / 100), 
+                'cr_damage_value': ((150 + (self.attr.main['dex'] / 10)) / 100),
+                'ph_damage_multiplier': 1,
+                'mg_damage_multiplier': 1,
+                'ab_damage_multiplier': 1,
             },
             'resistance': {
-                'phy_damage_resistance': self.attr.main['res'] / 2,
-                'mag_damage_resistance':  0,
-                'gen_damage_resistance':  0,
-                'crit_damage_resistance': 0,
-                'resistance_multiplier':  1,
+                'ph_damage_resistance': self.attr.main['res'] / 2,
+                'mg_damage_resistance':  0,
+                'ab_damage_resistance':  0,
+                'cr_damage_resistance': 0,
+                'ab_resistance_multiplier':  1,
             },
             'healing': {
                 'healing_base': self.attr.main['knw'],
@@ -88,11 +88,6 @@ class CombatProfileData:
         self.history['interactions'] = {
             'last_target': None, 'last_agressor': 0, 'last_assistance': None, 'last_assisted': None },
 
-    def update(self):
-        """
-            transfer the temporary data to the main profile of character.
-        """
-        pass
 
 
                         

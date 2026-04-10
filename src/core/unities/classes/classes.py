@@ -14,6 +14,7 @@ class cvl:
         }
         
         self.madress = './src/assets/image/classes/cvl/'
+        self.state_exceptions = { }
 
 class dpl:
     def __init__(self):
@@ -25,7 +26,7 @@ class dpl:
         }
         
         self.madress = './src/assets/image/classes/dpl/'
-
+        self.state_exceptions = { }
 
 class alc:
     def __init__(self):
@@ -37,12 +38,5 @@ class alc:
         }
         
         self.madress = './src/assets/image/classes/alc/'
-
+        self.state_exceptions = { }
     
-
-
-list = {
-    0: alc,
-    1: cvl,
-    2: dpl,
-}

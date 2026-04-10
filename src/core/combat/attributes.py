@@ -7,6 +7,3 @@ class Attributes:
         self.main     = { }
         for keys in self.received:
             self.main[keys] = self.base[keys] + self.received[keys]
-
-    def update(self):
-        print('Attributes Update was called.')

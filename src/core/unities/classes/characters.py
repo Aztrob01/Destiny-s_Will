@@ -9,10 +9,11 @@ from core.combat.profile import ProfileData
 class Characters:
     def __init__(self, user):
         self.job = user
-        self.profile = ProfileData(user) 
-
-        self.state  = ['fighting', 'idle']
-        self.sprite = AnimaSprite(self)
-        self.rect   = None
+        self.cid = 0
+        self.profile = ProfileData(user)
+        
+        self.state   = ['fighting', 'idle']
+        self.sprite  = AnimaSprite(self)
+        self.rect    = None
 
 

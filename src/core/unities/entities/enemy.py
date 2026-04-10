@@ -15,6 +15,8 @@ class dmy:
         self.madress = './src/assets/image/entities/dmy/'
         self.state_exceptions = { }
 
+        def_sk = None
+
 # -------------------------------------------
 # G
 
