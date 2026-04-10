@@ -3,57 +3,57 @@ import pygame
 from core.view.renderizator import Renderization
 from core.combat.profile import CombatProfileData
 
-#? we dont need to know that, so you need to convert save -> data -> CombatEngine
-from core.unities.classes.characters  import Characters
-from core.unities.entities.entities import Entities
-from core.unities.classes.classes import alc, cvl, dpl
-from core.unities.entities.enemy import dmy 
-
 
 
 class CombatEngine:
     def __init__(self):
-        self.level  = {
-            'data': {
-                'battleground_name': 'Training Ground',
-                'battleground_path': None,
-            },
-            'entities': {
-                0: Entities(dmy()),
-                1: Entities(dmy()),
-                2: Entities(dmy())
+        self.data = {
+            # basic
+            'cenary': None,
+            'entities': [],
+            'team': [],
+            # match
+            'turn': 0,
+            'active': 0,
+            'turns': [],
+            'over': False,
+            # entity cache
+            'temp': {
+                'active': False,
+                'entities': None,
+                'chars': None,
             }
         }
-        self.player = {
-            'team': {
-                0: Characters(alc()),
-                1: Characters(cvl()),
-                2: Characters(dpl())
-            }
-        }
-        self.events = None
-        self.info   = {
-            'cache': { 'is_active': False, },
-            'match': { 'rounds_played': 0, 'is_game_over': False }
-        }
+        
 
+        self.events  = None
         self.display = pygame.display.get_surface()
         self.action_controller       = None
         self.combatevents_controller = None
         self.renderization = Renderization()
 
-    def __start_combat_profile(self):
-        for nums, ent in enumerate(self.level['entities']):
-            self.info['cache']['entities'][nums] = CombatProfileData(ent)
-        for nums, char in enumerate(self.player['team']):
-            self.info['cache']['characters'][nums] = CombatEngine(char)
-        self.info['cache']['is_active'] = True
-    
-    def __clear_combat_profile(self):
-        self.info['cache'] = { 'is_active': False, }
+    def __prepare(self):
+        if self.data['temp']['active'] is False:
+            for nums, unities in enumerate(self.data['entities']):
+                self.data['temp']['entities'][nums] = CombatProfileData(unities)
+            for nums, unities in enumerate(self.data['team']):
+                self.data['temp']['chars'][nums] = CombatProfileData(unities)
+            
+            self.data['temp']['active'] = True
+
+    def prev(self, target=None):
+        pass
+
+    def next(self, target=None):
+        pass
 
     def apply_combat_profile(self):
         pass    
 
     def update(self):
         pass
+
+    def play(self):
+        for unities in self.player['team']:
+            unity = self.player['team'][unities]
+            self.renderization.draw_entity(unity, (300, 300))

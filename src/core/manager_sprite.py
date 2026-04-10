@@ -1,65 +1,36 @@
-import pygame
+import pygame, os
+from core.manager_data import DataLoader
 
+# animaSprite generates the image, but does not make the image go throught the game itself
 
-class SpriteManager:
-    def __init__(self, user, data):
-        self.user  = user
-        self.image = None
+class AnimaSprite:
+    def __init__(self, user):
+        self.user    = user
+        self.madress = user.job.madress
+        self.state   = user.state
+        self.display = pygame.display.get_surface()
+        self.loader  = DataLoader()
+
         self.rect  = None
-        self.size  = None
-
-        self.static = {
-            'explore': {
-                'idle': data['explore']['idle'], # will return an path
-                'walk_up': data['explore']['walk_up'],
-                'walk_down': data['explore']['walk_down'],
-                'walk_side': data['explore']['walk_side'],
-                'dead': data['explore']['dead'],
-            },
-            'fight': {
-                'idle': data['fight']['idle'],
-                'running': data['fight']['running'],
-                'acting': data['fight']['acting'],
-
-                'stuned': data['fight']['stuned'],
-                'hitted': data['fight']['hitted'],
-                'low': data['fight']['low'],
-                'dead': data['fight']['dead'],
-            },
-            'size': {
-                'default': data['default'],
-                'others': data['others'],
-            }
-        }
-
-    def image_update(self, path, key_words):
-        """
-            dict: Update the sprite image and size based on a list of keys
-                #### path -> a system path where the png belongs
-                #### key_words -> keys used to find path into self.static sprites.
-        """
-        self.image = pygame.image.load(path)
-
-        if self.static['size']['others'] is not None:
-            for nums, lists in self.static['size']['others']:
-                for num, items in enumerate(lists):
-                    if items[0] == key_words:
-                        self.image = pygame.transform.scale(self.image, self.static['size']['others'][nums][1])
-        else:
-            self.image = pygame.transform.scale(self.image, self.static['size']['default'])
-
+        self.image = None
+        self.dimensions = (self.loader.data_settings['video']['actual_res'][0] * user.job.data['dimensions'], self.loader.data_settings['video']['actual_res'][0] * user.job.data['dimensions'])
     
-    def static_update(self, key_state):
-        for keys in self.static:
-            if key_state[0] == keys:
-                for num, key in enumerate(self.static[keys]):
-                    if key_state[1] == key:
-                        if self.static[keys][key] is not None:
-                            self.image_update(self.static[keys][key], key_state)
-                        else:
-                            print(f"An error occurred rendering {self.user.codename}'s model {key_state}.")
-                            self.image_update(self.static['fight']['idle'], ['fight', 'idle']) 
-                        break
-                break
+    def validate(self, path):
+        if os.path.exists(path):
+            return True
+        else:
+            return False
 
+    def update(self, keywords):
+        key = f'{self.madress}{keywords[0]}/{keywords[1]}.png'
+        skey = f'{self.madress}fighting/idle.png'
+        if self.validate(key):
+            self.image = pygame.image.load(key).convert_alpha()
+        else:
+            print(f'Error trying to find that model {keywords} for {self.user.job.data['info']['codename']}')
+            self.image = pygame.image.load(skey).convert_alpha()
+
+        self.image = pygame.transform.scale(self.image, self.dimensions)
+
+            
 
