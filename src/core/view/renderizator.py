@@ -1,19 +1,33 @@
 import pygame
+from core.manager_data import DataLoader
 
 class Renderization:
     def __init__(self):
-        self.display = pygame.display.get_surface()
+        self.__display = pygame.display.get_surface()
+        self.__loader  = DataLoader()
 
-    def image_render(self, contents):
-        print('RP-1 called for:', contents)
-        self.display.blit(contents[0].image, (contents[1][0], contents[1][1]))
+        self.__world      = None
+        self.__background = None
+        self.__entity     = None
 
-    def object_render(self, contents):
-        print('RP-2 called for:', contents)
-        self.display.blit(contents[0].image, (contents[1][0], contents[1][1]))
-
-    def complex_render(self, contents, positions):
-        print('RP-3 called ISNT READY for:', contents)
+    def draw_world(self, level, offset):
         pass
+
+    def draw_background(self, path, pos):
+        pass
+
+    def draw_entity(self, entity, pos):
+        entity.sprite.update(entity.state)
+
+        res = self.__loader.data_settings['video']['actual_res']
+        if pos[0] >= 0 and pos[0] <= res[0]:
+            if pos[1] >= 0 and pos[1] <= res[1]:
+                if entity.rect is None:
+                    entity.sprite.rect = entity.sprite.image.get_rect()
+                entity.sprite.rect.midbottom = pos
+                self.__display.blit(entity.sprite.image, entity.sprite.rect)
+
+            
+
 
 
