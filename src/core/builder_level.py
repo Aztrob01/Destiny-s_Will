@@ -32,7 +32,7 @@ class LevelBuilder:
 
         output = []
 
-        for i in range(1, slots + 1):
+        for i in range(1, slots):
             i = i - 1
             print(i, slots)
             ch = random.uniform(0, 1)

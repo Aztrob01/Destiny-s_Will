@@ -29,5 +29,5 @@ class gob:
             'brain': { 'agr': 3, 'tac': 6, 'def': 1},
             'dimensions': 0.1, }
         
-        self.madress = './src/assets/image/entities/dmy/'
+        self.madress = './src/assets/image/entities/gob/'
         self.state_exceptions = { }
