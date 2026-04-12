@@ -12,7 +12,7 @@ class LevelBuilder:
     
     def generate_enemies(self):
         print(self.data_level)
-        slots  = random.randint(1, 5)
+        slots  = random.randint(2, 5)
         entry = []
 
         for ents in self.data_level['enemies']:
@@ -24,30 +24,31 @@ class LevelBuilder:
                     print('Removing', entry[numbers][0], 'from list')
                     entry.remove(entry[numbers])
 
-        for nums, objs in enumerate(entry):
-            if entry[nums][2] < entry[nums - 1][2]:
-                x = entry.pop(nums)
-                entry.insert((nums - 1) if nums > 0 else 0, x)
-                print('Object organized', entry)
+        entry.sort(key=lambda target: target[2])
 
         output = []
 
         for i in range(1, slots):
             i = i - 1
-            print(i, slots)
+            print('--------------------------------')
             ch = random.uniform(0, 1)
             ch = round(ch, 2)
+            print(f'Dinamic entrance started with {i}, {ch}% in a total of {slots} tries' )
 
             for objects in entry:
+                print('-----------------------------\nChecking for objects in entry. Value', objects)
                 if ch <= objects[2]:
+                    
                     obj = Entities(ENEMIES[objects[0]]())
+                    print(f'{ch}% defined for {obj.job.data['info']['codename']}')
                     obj.profile.stats['level']['current'] = random.randint(objects[1][0], objects[1][1])
+                    print('Entity Object created.')
                     output.append(obj)
+                    print(output)
                     print(f'Appended {obj.job.data['info']['codename']} at position {i} with level {obj.profile.stats['level']['current']}')
                     print(f'{obj.job.data['info']['codename']} absorved {ch}% to appear from {objects[2]}%')
+    
         
-        # estudei a versão lambda. Ainda não entendi muito bem, mas seria como...
-        # entry.sort(lambda target : target[2])
-        # vou manter minha func até eu ver um problema maior nessa organização
+        print('Output scape', output)
         
         return output

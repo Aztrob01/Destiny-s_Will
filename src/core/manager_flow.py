@@ -26,6 +26,7 @@ class FlowManager:
             team          = self.__player.generate_team()
             self.__combat = CombatEngine()
 
+            print(len(mobs), 'Lenght')
             self.__combat.data['cenary'] = battleground
             self.__combat.data['team'] = team
             self.__combat.data['entities'] = mobs
