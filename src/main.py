@@ -23,7 +23,6 @@ class GameLoop:
                     pygame.quit()
                     exit(0)
 
-
             self.level.events = events
 
             self.level.play()
