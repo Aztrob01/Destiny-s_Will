@@ -10,6 +10,10 @@ class Renderization:
         self.__background = None
         self.__entity     = None
 
+        self.__ui  = None
+        self.__gfx = None
+        
+
     def draw_world(self, level, offset):
         pass
 
@@ -28,6 +32,21 @@ class Renderization:
         rect = img.get_rect()
         rect.center = center_pos
         self.__display.blit(img, rect)
+    
+    def draw_lifebar(self, owner):
+        red   = (30, 0, 0)
+        green = (20, 210, 30)
+        grey  = (60, 60, 60)
+
+        rect = owner.sprite.rect
+        size = (rect[2], rect[3])
+        original = owner.profile.stats['hp']['original']
+        maximum = owner.profile.stats['hp']['maximum']
+        current = owner.profile.stats['hp']['current'] / maximum 
+
+        grey  = pygame.draw.rect(self.__display, grey, (rect.bottomleft[0], rect.midtop[1], size[0], size[1] / 10))
+        red   = pygame.draw.rect(self.__display, red, (rect.bottomleft[0], rect.midtop[1], size[0] * (maximum / original), size[1] / 10))
+        green = pygame.draw.rect(self.__display, green, (rect.bottomleft[0], rect.midtop[1], (size[0] * current), size[1] / 10))
 
     def draw_entity(self, entity, pos):
         entity.sprite.update(entity.state)
