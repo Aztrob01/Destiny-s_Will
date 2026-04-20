@@ -1,35 +1,56 @@
-import pygame, random
+import pygame, random, operator
 
-test = { 
-    'user': 
-            { 
-              'stats': None, 
-              'other': None
-            },
-    'fight': 
-            { 
-              'general': None,
-              'team': None,
-              'enemy': None
-            },
-    'usage': 
-            { 
-                'times': 0,
-            }
-}
-
-class MainAction:
-    def __init__(self, name, type, conditions, requirements):
+class Technique:
+    def __init__(self, name, type, req, data):
         self.name = name
         self.type = type
-        self.conditions   = conditions
-        self.requirements = requirements
+        self.requirements = req
+        self.data = data
+        self.targettype = None
 
-class Vote:
+    def data_copy(self, user):
+        pass
+
+    def data_save(self, user):
+        pass
+
+    def data_apply(self, user):
+        pass
+
+    def require(self, user, combat):
+
+        ops = {
+            ">": operator.gt,
+            ">=": operator.ge,
+            "<": operator.lt,
+            "<=": operator.le,
+            "==": operator.eq,
+            "!=": operator.ne
+        }
+
+        for requirements in self.requirements:
+            if requirements[0] == 'combat':
+                entry = combat[requirements[1]]
+
+            if requirements[0] == 'usage':
+                entry = self.data[requirements[0]][requirements[1]]
+
+            if requirements[0] == 'user':
+                entry = user.profile.stats[requirements[1]]
+        
+            if not ops[requirements[2]](entry, requirements[3]):
+                return False
+
+        return ops[requirements[2]](entry, requirements[3])
+
+
+
+
+class Passive:
     def __init__(self):
         pass
 
-class Passive:
+class Pact:
     def __init__(self):
         pass
 
@@ -37,13 +58,10 @@ class Active:
     def __init__(self):
         pass
 
-class Teste(MainAction):
+class Ac1(Technique):
     def __init__(self):
-        super().__init__("Nome de Teste", Vote(), None, None)
-    
-teste = Teste()
-teste.tries(0)
-
+        super().__init__("Direct Attack", Active(), [("usage", "times", "<", 15)], None)
+        self.targettype = ('single', 'enemy')
 
 
 
