@@ -1,21 +1,15 @@
 import pygame, random, operator
 
 class Technique:
-    def __init__(self, name, type, req, data):
-        self.name = name
-        self.type = type
+    def __init__(self, name, type, req):
+        self.name         = name
+        self.type         = type
         self.requirements = req
-        self.data = data
-        self.targettype = None
 
-    def data_copy(self, user):
-        pass
-
-    def data_save(self, user):
-        pass
-
-    def data_apply(self, user):
-        pass
+        self.data         = None
+        self.typeoftarget = None
+        self.typeofarea   = None
+        self.targetrange  = 1
 
     def require(self, user, combat):
 
@@ -41,33 +35,26 @@ class Technique:
             if not ops[requirements[2]](entry, requirements[3]):
                 return False
 
-        return ops[requirements[2]](entry, requirements[3])
-
-
+        return True
 
 
 class Passive:
     def __init__(self):
-        pass
+        self.data  = {
+            'usage': { 'times': 0, 'total': 0, },
+            'transfer': { 'times_used': 0 } }
 
 class Pact:
     def __init__(self):
-        pass
+        self.data = {
+            'usage': { 'times': 0, 'total': 0, 'limit': 15 },
+            'transfer': { 'times_used': 0 } }
 
 class Active:
     def __init__(self):
-        pass
+        self.data = { 
+            'usage': { 'times': 0, 'total': 0, },
+            'transfer': { 'times_used': 0, 'complete': 0, 'blocked': 0 } }
 
-class Ac1(Technique):
-    def __init__(self):
-        super().__init__("Direct Attack", Active(), [("usage", "times", "<", 15)], None)
-        self.targettype = ('single', 'enemy')
-
-
-
-skills = {
-    'passive':{},
-    'pacts': {},
-    'skills': {},
-    'ultimate': {}     
-}
+                
+            
