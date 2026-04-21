@@ -1,12 +1,13 @@
 import pygame, random
 
 from core.manager_sprite import AnimaSprite
-from core.combat.profile import ProfileData
+from core.combat.main_profile import ProfileData
 
 class Entities:
     def __init__(self, entity):
         self.job        = entity
         self.codename   = entity.data['info']['codename']
+        
 
 
         self.randomized = False
@@ -14,6 +15,7 @@ class Entities:
         self.mlvl       = 1
 
         self.profile = ProfileData(self)
+        self.combat_profile = None
         
         self.state   = ['fighting', 'idle']
         self.sprite  = AnimaSprite(self)

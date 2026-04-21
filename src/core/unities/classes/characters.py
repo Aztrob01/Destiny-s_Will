@@ -2,7 +2,7 @@ import pygame
 
 from root.utils import update_sprite
 from core.manager_sprite import AnimaSprite
-from core.combat.profile import ProfileData
+from core.combat.main_profile import ProfileData
 
 # Create the real entity thats read in game
 
@@ -11,6 +11,7 @@ class Characters:
         self.job = user
         self.cid = 0
         self.profile = ProfileData(self)
+        self.combat_profile = None
         
         self.state   = ['fighting', 'idle']
         self.sprite  = AnimaSprite(self)

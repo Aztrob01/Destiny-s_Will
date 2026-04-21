@@ -2,4 +2,7 @@
 
 class CombatEvents:
     def __init__(self):
-        pass
+        self.entities = []
+        self.team     = []
+
+        

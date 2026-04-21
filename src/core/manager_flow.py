@@ -35,5 +35,5 @@ class FlowManager:
         if self.__state[0] == 0:
             self.load()
             self.__state[0] = 1
-        self.__combat.play()
+        self.__combat.start()
         

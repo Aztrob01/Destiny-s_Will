@@ -35,6 +35,7 @@
       },
       "slot_2": {
         "type": "dpl",
+        "id": 1001,
         "attr": {
           "received": { "hp": 0, "str": 15, "dex": 0, "knw": 0, "lky": 0, "res": 10 },
           "level": [8, 6000],
