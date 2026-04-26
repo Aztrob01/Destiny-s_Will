@@ -8,7 +8,8 @@ class ProfileData:
     def __init__(self, user):
         self.origin = user
         self.attr   = Attributes(user)
-
+        
+        self.state = ['fighting', 'idle']
         self.stats = {
             'hp': { 'original': self.attr.main['hp'], 'maximum': self.attr.main['hp'], 'current': self.attr.main['hp'] },
             'mp': { 'original': 75, 'maximum': 75, 'current': 75 },
