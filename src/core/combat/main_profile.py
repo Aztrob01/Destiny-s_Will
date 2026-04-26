@@ -31,7 +31,7 @@ class ProfileData:
                 'healing_multiplier': 1,
                 'healing_receive_multiplier': 1,
             },
-            'state': {
+            'status': {
                 'buffs': [],
                 'debuffs': [],
             },
