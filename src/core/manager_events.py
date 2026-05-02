@@ -12,8 +12,9 @@ class CombatEvents:
         self.round = 0
         self.last_round_compiled = None
 
-    def priority_phase(self, target_event=[]):
-        target_event.sort(key=lambda target : target.priority)
+    def priority_sort(self, target_event):
+        if len(target_event) > 1:
+            target_event.sort(key=lambda x: x[0].priority)
             
 
     def compile(self):
@@ -55,9 +56,7 @@ class CombatEvents:
                                 case 7, 8, 9:
                                     self.after_events.append([debuffs, unities])
                     
-            self.last_round_compiled = self.round
-
-    def       
+            self.last_round_compiled = self.round       
 
 
 
